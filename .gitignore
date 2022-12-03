@@ -1,0 +1,6 @@
+.ccls-cache/
+.direnv/
+result/
+build/
+.breakpoints
+compile_commands.json

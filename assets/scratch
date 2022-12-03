@@ -1,0 +1,84 @@
+- Add to store or take from store
+- Add:
+-- Long-lasting or perishable food?
+-- Perishable:
+--- Meat?
+--- Produce?
+-- Long-lasting
+--- Freezer stuffs
+--- Shelves (basically everything else on shelves in a grocery store)
+- Take:
+-- Perishable:
+--- Meat?
+--- Produce?
+-- Long-lasting
+--- Freezer stuffs
+--- Shelves
+
+Shopping process:
+(start)
+
+typedef Map<std::string, unsigned int> Cart;
+
+Commands:
+  - help :: show this menu
+  - search <item> :: find if item exists
+  - add <item> :: add item to cart
+  - delete <item> :: delete item from cart if it exists
+  - checkout :: finish adding items and go to checkout
+>>> search apple
+apple: <price>
+Add to cart? (Y/N): Y
+Adding to cart...
+>>> add <something that doesn't exist>
+<something> doesn't exist!
+>>> add orange
+Adding orange to cart
+>>> delete <item that doesn't exist>
+<item> isn't in your cart!
+>>> checkout
+Checking out
+(finish)
+
+Giving process:
+(start)
+List<Item> items;
+
+Commands:
+  - help :: show this menu
+  - add :: add item to store
+  - done :: finish adding items
+
+>>> add
+Enter name of item:
+Enter quantity of item:
+>>> finish
+for (item in items) {
+  check if exists
+  if (exists) {
+    Item already exists! Adding to existing stock...
+    [append to existing stock]
+  } else {
+    Enter price of item:
+    [append as new item to store file]
+  }
+}
+Gtfo
+(finish)
+
+Checkout process:
+(start)
+queue.txt
+Arya oranges 10 apples 11 thing 13
+Awaab ...
+Varun ...
+You (interactive checkout)
+Arya is now checking out...(checkout Arya silently)
+Awaab is now checking out...(checkout Awaab silently)
+Varun is now checking out...(checkout Varun silently)
+Checkout (print items in sorted order)
+Price is: <price>
+How much money are you paying? <money>
+Change is: <money - price>
+Gtfo
+(finish)

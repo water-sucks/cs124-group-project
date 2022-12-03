@@ -1,0 +1,4 @@
+water     1000  0.00
+tomatoes  100   0.50
+lettuce   10    1.99
+bread     30    3.99
