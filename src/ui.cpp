@@ -98,7 +98,7 @@ void show_cart(const Store& store, const Cart& cart)
   std::cout << row_boundary << "\n";
   for (const auto& item : cart)
   {
-    const auto& store_item = store.at(item.first);
+    const auto& store_item = store.find(item.first)->second;
     total += store_item.price * item.second;
     std::cout << "|" << center(store_item.name, 25) << "|"
               << center(std::to_string(item.second), 12) << "|"
@@ -124,6 +124,6 @@ void show_store(const Store& store)
               << center(std::to_string(item.quantity), 12) << "|"
               << center(dollars(item.price), 11) << "|\n"
               << row_boundary << "\n";
-    iter++;
+    ++iter;
   }
 }

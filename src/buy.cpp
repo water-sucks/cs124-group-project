@@ -38,7 +38,7 @@ Store load_items(std::string filename)
     ss >> quantity;
     ss >> price;
 
-    items.insert({item_name, Item(item_name, quantity, price)});
+    items.insert(item_name, Item(item_name, quantity, price));
   }
 
   file.close();
@@ -68,19 +68,18 @@ void add_item(const Store& store, Cart& cart, std::string item,
         std::cout << "Invalid amount entered, default to 1\n";
       }
     }
-    // This is done in two separate checks in order to avoid
-    // creating the key with a default value before it is needed.
+    auto existing_item = cart.find(item);
+    if (existing_item != cart.end())
+    {
+      to_add += existing_item->second;
+    }
     if (to_add > it->second.quantity)
     {
       std::cout << "Store does not have enough stock of this item\n";
       return;
     }
-    if (cart[item] + to_add > it->second.quantity)
-    {
-      std::cout << "Store does not have enough stock of this item\n";
-      return;
-    }
-    cart[item] = cart[item] + to_add;
+    // cart[item] = cart[item] + to_add;
+    cart.insert(item, to_add);
     std::cout << "Added to cart\n";
   }
   else
@@ -149,7 +148,8 @@ void remove_item(Cart& cart, std::string item, std::string amount)
     }
     else
     {
-      cart[store_item.first] -= to_remove;
+      auto current = cart.find(store_item.first)->second;
+      cart.insert(item, current - to_remove);
     }
     std::cout << "Removed from cart\n";
   }

@@ -5,7 +5,8 @@
 
 // Doubly-linked list with iterators that mimics the
 // behavior of the STL implementation std::list.
-template <typename T> class List {
+template <typename T> class List
+{
 public:
   class Iterator;
 
@@ -52,7 +53,8 @@ public:
 
   ~List();
 
-  class Iterator {
+  class Iterator
+  {
   public:
     explicit Iterator(Node* position, const List* list);
 
@@ -75,12 +77,15 @@ public:
 
     // Container that iterator belongs to.
     const List<T>* list;
+
+    friend class List;
   };
 
 private:
   // Object that contains references to next and previous
   // pointers for a given position in the list.
-  struct Node {
+  struct Node
+  {
     explicit Node(T data);
 
     // Data that node contains.
