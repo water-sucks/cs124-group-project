@@ -8,7 +8,8 @@ project(
 
 sources = files([
   'main.cpp',
-  'src/store.cpp',
+  'src/buy.cpp',
+  'src/ui.cpp',
   'src/structures/list.cpp'
 ])
 
