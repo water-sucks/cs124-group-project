@@ -7,5 +7,6 @@
 
 List<Item> giving_flow();
 Cart shopping_flow(const Store& store);
+void checkout_flow(Store& store, const Cart& cart);
 
 #endif

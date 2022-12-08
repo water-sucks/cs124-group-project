@@ -1,0 +1,2 @@
+apples 30 blueberries 28 beans 10 cereal 2
+cereal 13 cookies 13

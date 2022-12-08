@@ -1,12 +1,11 @@
 #include "flows.hpp"
 
+#include "structures/queue.hpp"
 #include "ui.hpp"
 
 #include <climits>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <map>
 #include <sstream>
 
 const std::string HELP =
@@ -114,4 +113,62 @@ List<Item> giving_flow()
   }
 
   return items;
+}
+
+List<Item> build_item_list_from_line(const Store& store, std::string line)
+{
+  std::stringstream ss(line);
+
+  std::string name;
+  int quantity;
+
+  List<Item> items;
+
+  const auto store_items = store.get_items();
+
+  while (ss >> name >> quantity)
+  {
+    auto it = store_items.find(name);
+    if (it != store_items.end())
+    {
+      items.push_back(Item(name, quantity, it->second.price));
+    }
+  }
+
+  return items;
+}
+
+void checkout_flow(Store& store, const Cart& cart)
+{
+  Queue<List<Item>> queue;
+
+  std::ifstream queue_file;
+  queue_file.open("./assets/queue.txt");
+
+  std::string line;
+  while (getline(queue_file, line))
+  {
+    queue.push(build_item_list_from_line(store, line));
+  }
+
+  while (!queue.empty())
+  {
+    List<Item> items = queue.front();
+    queue.pop();
+    store.checkout(items, false);
+  }
+
+  queue_file.close();
+
+  List<Item> items;
+
+  auto store_items = store.get_items();
+
+  for (const auto& item : cart.get_items())
+  {
+    double price = store_items.find(item.first)->second.price;
+    items.push_back(Item(item.first, item.second, price));
+  }
+
+  store.checkout(items, true);
 }

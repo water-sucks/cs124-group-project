@@ -65,6 +65,25 @@ int get_int(const std::string& prompt, int min, int max)
   }
 }
 
+double get_price(const std::string& prompt)
+{
+  while (true)
+  {
+    double input;
+    std::cout << prompt << ": $";
+    std::cin >> input;
+    std::cin.clear();
+    std::cin.ignore();
+
+    if (!std::cin.fail())
+    {
+      return input;
+    }
+
+    std::cout << "Unable to receive valid input; try again\n";
+  }
+}
+
 std::string get_string(const std::string& prompt)
 {
   while (true)

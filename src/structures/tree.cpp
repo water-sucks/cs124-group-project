@@ -23,8 +23,8 @@ StoreSection BinaryTree::find_store_section() const
     {
       return trav->section;
     }
-    bool lean = confirm(trav->question);
-    trav = lean ? trav->left : trav->right;
+    bool answer = confirm(trav->question);
+    trav = answer ? trav->left : trav->right;
   }
 
   return StoreSection::None;

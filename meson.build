@@ -14,7 +14,9 @@ sources = files([
   'src/store.cpp',
   'src/ui.cpp',
   'src/structures/list.cpp',
-  'src/structures/tree.cpp'
+  'src/structures/map.cpp',
+  'src/structures/queue.cpp',
+  'src/structures/tree.cpp',
 ])
 
 exe = executable(

@@ -76,6 +76,8 @@ void Cart::remove_item(std::string item, int amount)
   }
 }
 
+const Map<std::string, int> Cart::get_items() const { return items; }
+
 std::ostream& operator<<(std::ostream& os, const Store& obj)
 {
   const std::string row_boundary = std::string(52, '-');
