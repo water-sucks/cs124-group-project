@@ -1,0 +1,18 @@
+Cart
+attrs:
+  store :: corresponding store item
+  items :: map of items in cart
+methods:
+  add_item :: add item to cart
+  remove_item :: remove item from cart
+
+Store
+attrs:
+  filename :: file name to write to/read from
+  items :: map of items in store
+methods:
+  load :: get items from filename, overwrite current map
+  persist :: overwrite file with current items
+  checkout :: checkout a cart object
+  add_item: :: add item to store
+  remove_item :: remove item from store

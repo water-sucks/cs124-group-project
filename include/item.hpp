@@ -1,7 +1,6 @@
-#ifndef _MODELS_H_
-#define _MODELS_H_
+#ifndef _ITEM_H_
+#define _ITEM_H_
 
-#include "structures/map.hpp"
 #include <string>
 
 struct Item
@@ -12,8 +11,5 @@ struct Item
   int quantity = 0;
   double price = 0;
 };
-
-typedef Map<std::string, Item> Store;
-typedef Map<std::string, int> Cart;
 
 #endif

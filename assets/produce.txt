@@ -1,0 +1,7 @@
+apples        3002    0.50
+blueberries   207     2.89
+oranges       3822    0.52
+garlic        1000    0.75
+lemons        1300    0.79
+lettuce       562     1.25
+tomatoes      1898    0.63
