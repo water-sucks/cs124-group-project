@@ -157,8 +157,7 @@ template <typename T> List<T>::Node::Node(T data) : data(data) {}
 template <typename T>
 List<T>::Iterator::Iterator(Node* position, const List<T>* list)
     : position(position), list(list)
-{
-}
+{}
 
 template <typename T> T& List<T>::Iterator::operator*()
 {

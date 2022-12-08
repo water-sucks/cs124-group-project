@@ -68,6 +68,9 @@ public:
   // last bucket.
   Iterator end() const;
 
+  // Copy elements from one map into another when reassigned.
+  Map<Key, T, Hash>& operator=(const Map<Key, T, Hash>& other);
+
   // I don't have an idea on how to return a proper reference
   // from this overload; I might have to change my list iterator
   // definition?; for right now, I'll stick to custom insert and
@@ -108,9 +111,6 @@ public:
   ~Map();
 
 private:
-  // Prevent direct reassignment (because I'm lazy and want to get rid of
-  // warnings).
-  Map<Key, T>& operator=(const Map<Key, T>& other);
   // Static array of buckets for hash table.
   List<Pair<Key, T>>* buckets;
   // Number of buckets in map.

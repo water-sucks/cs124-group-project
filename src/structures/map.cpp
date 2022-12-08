@@ -30,6 +30,23 @@ Map<Key, T, Hash>::Map(const Map<Key, T, Hash>& other) : Map(other.bucket_count)
 }
 
 template <typename Key, typename T, typename Hash>
+Map<Key, T, Hash>& Map<Key, T, Hash>::operator=(const Map<Key, T, Hash>& other)
+{
+  delete[] buckets;
+
+  length = other.length;
+  bucket_count = other.bucket_count;
+  buckets = new List<Pair<Key, T>>[bucket_count];
+
+  for (std::size_t i = 0; i < bucket_count; i++)
+  {
+    buckets[i] = other.buckets[i];
+  }
+
+  return *this;
+}
+
+template <typename Key, typename T, typename Hash>
 std::size_t Map<Key, T, Hash>::size() const
 {
   return length;
