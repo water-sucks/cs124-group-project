@@ -1,7 +1,5 @@
-ice        50    5.00
-fries      70    6.39
-burrito    103   3.32
-corndogs   203   4.20
-icecream   200   2.88
-fish       87    6.23
-chicken    56    5.87
+cheese    70   1.99
+milk      80   2.59
+eggs      80   1.99
+yogurt    60   1.99
+lemonade  50   1.99

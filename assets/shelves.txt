@@ -1,7 +1,8 @@
-beans    280    0.34
-bread    130    2.50
-cereal    75    3.00
-chips    420    2.99
-cookies    177    2.50
-oats    699    4.33
-syrup    98    9.00
+cereal    70   1.49
+tuna      80   1.99
+pasta     80   1.99
+water     100  0.00
+sugar     80   1.99
+salt      80   1.99
+pepper    70   1.99
+potatoes  70   1.99

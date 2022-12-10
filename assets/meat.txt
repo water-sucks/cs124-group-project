@@ -1,7 +1,8 @@
-chicken   300    1.87
-fish      420    6.32
-steak     210    9.86
-pork      96     6.28
-shrimp    201    8.21
-turkey    18     50.22
-lamb      56     21.33
+chicken   80   1.49
+lamb      80   2.59
+steak     50   4.99
+salmon    80   2.59
+fish      60   2.59
+turkey    70   1.49
+pork      70   1.49
+bacon     80   1.49
