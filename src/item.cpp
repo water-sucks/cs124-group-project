@@ -4,13 +4,6 @@ Item::Item(std::string name, int quantity, double price)
     : name(name), quantity(quantity), price(price)
 {}
 
-void swap(std::string& item, std::string& other)
-{
-  std::string tmp = item;
-  item = other;
-  other = tmp;
-}
-
 // Merge two sorted string vectors into one sorted string vector.
 void merge(std::vector<std::string>& words, std::size_t from, std::size_t mid,
            std::size_t to)

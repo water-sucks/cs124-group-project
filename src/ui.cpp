@@ -2,6 +2,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 
 bool confirm(const std::string& prompt)
@@ -46,13 +47,12 @@ int get_int(const std::string& prompt, int min, int max)
     int input;
     std::cout << prompt << ": ";
     std::cin >> input;
-    std::cin.clear();
-    std::cin.ignore();
 
     if (std::cin.fail())
     {
       std::cout << "Unable to receive valid input; try again\n";
       std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       continue;
     }
 
@@ -62,6 +62,8 @@ int get_int(const std::string& prompt, int min, int max)
     }
 
     std::cout << "Number not in range\n";
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 
@@ -72,15 +74,22 @@ double get_price(const std::string& prompt)
     double input;
     std::cout << prompt << ": $";
     std::cin >> input;
-    std::cin.clear();
-    std::cin.ignore();
 
-    if (!std::cin.fail())
+    if (std::cin.fail())
+    {
+      std::cout << "Unable to receive valid input; try again\n";
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      continue;
+    }
+
+    if (input >= 0)
     {
       return input;
     }
-
-    std::cout << "Unable to receive valid input; try again\n";
+    std::cout << "Price cannot be negative\n";
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 

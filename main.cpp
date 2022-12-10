@@ -33,27 +33,7 @@ int main()
   std::cout << "Do you want to give items or buy items from the store?\n"
                "  1. Give items to store.\n"
                "  2. Buy items from store.\n";
-  bool giving;
-  while (true)
-  {
-    std::cout << "Enter a number: ";
-    int choice;
-    std::cin >> choice;
-    if (choice == 1)
-    {
-      giving = true;
-    }
-    else if (choice == 2)
-    {
-      giving = false;
-    }
-    else
-    {
-      std::cout << "Enter either 1 or 2.\n";
-      continue;
-    }
-    break;
-  }
+  int giving = get_int("Enter a number", 1, 2) == 1;
 
   std::cout
       << "\nCool, let's find the section of the store you'd like to go to!\n\n";
@@ -88,12 +68,17 @@ int main()
 
   if (giving)
   {
+    std::cout << "\nAlright, let's start adding items to the store!\n\n";
+
     // Get items from user and add them to the store
     List<Item> items = giving_flow();
     add_items_to_store(store, items);
   }
   else
   {
+    std::cout
+        << "\nAlright, let's start buying items! You are now in a shell.\n\n";
+
     // Let user shop for stuff and then check out items
     Cart cart = shopping_flow(store);
     checkout_flow(store, cart);

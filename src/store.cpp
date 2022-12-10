@@ -125,6 +125,8 @@ void Store::checkout(const List<Item>& items, bool interactive)
 {
   double total = 0;
 
+  std::size_t checked_out = 0;
+
   for (const auto& item : items)
   {
     Item store_item = this->items.find(item.name)->second;
@@ -147,10 +149,11 @@ void Store::checkout(const List<Item>& items, bool interactive)
           item.name,
           Item(item.name, store_item.quantity - item.quantity, item.price));
     }
+    checked_out++;
     total += item.quantity * item.price;
   }
 
-  if (interactive)
+  if (interactive && (checked_out != items.size() || checked_out == 0))
   {
     std::cout << "Total: " << dollars(total) << "\n";
   }

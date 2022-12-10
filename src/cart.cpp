@@ -11,14 +11,18 @@ Cart::Cart(const Store& store) : store(store.get_items()) {}
 
 void Cart::add_item(std::string item, int amount)
 {
+  // Reject empty items
   if (item.empty())
   {
     std::cout << "Must specify item to buy\n";
     return;
   }
+
+  // Make sure item exists in store
   auto it = store.find(item);
   if (it != store.end())
   {
+    // Add already existing amount in cart
     auto existing_item = items.find(item);
     if (existing_item != items.end())
     {
@@ -40,14 +44,18 @@ void Cart::add_item(std::string item, int amount)
 
 void Cart::remove_item(std::string item, int amount)
 {
+  // Reject empty items
   if (item.empty())
   {
     std::cout << "Must specify item to delete\n";
     return;
   }
+  // Make sure item already exists in cart
   auto it = items.find(item);
   if (it != items.end())
   {
+    // Interactively prompt for amount to remove if there are multiple
+    // and it is not specified how many delete
     auto store_item = *it;
     if (store_item.second > 1 && amount == 0)
     {
@@ -55,10 +63,13 @@ void Cart::remove_item(std::string item, int amount)
                 << " of these in your cart.\n";
       amount = get_int("How many do you want to remove?", 1, store_item.second);
     }
+    // Remove all items if the amount to delete is larger than the
+    // amount in the cart
     if (store_item.second - amount < 0)
     {
       std::cout << "Removing all " << item << " from cart\n";
     }
+    // Remove 0-value entry from map
     if (store_item.second - amount <= 0)
     {
       items.erase(it);

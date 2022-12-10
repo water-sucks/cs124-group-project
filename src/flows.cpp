@@ -78,7 +78,7 @@ Cart shopping_flow(const Store& store)
     // Show all items in cart and total
     else if (command == "cart")
     {
-      std::cout << cart << "\n";
+      std::cout << cart;
     }
     // Proceed to checkout flow
     else if (command == "checkout")
@@ -100,9 +100,11 @@ List<Item> giving_flow()
 
   bool done = false;
 
+  // Add items to list until user says they are done
   while (!done)
   {
-    std::string name = get_string("What is the name of the item?");
+    std::string name =
+        get_string("What is the name of the item you want to add?");
     int quantity = get_int("How many of this item do you have?", 1, INT_MAX);
 
     std::cout << "Added item to list\n";
@@ -115,6 +117,8 @@ List<Item> giving_flow()
   return items;
 }
 
+// Build a list of items (a cart) from a string in the form
+// item1 price1 item2 price2 item3 price3 ...
 List<Item> build_item_list_from_line(const Store& store, std::string line)
 {
   std::stringstream ss(line);
@@ -128,6 +132,7 @@ List<Item> build_item_list_from_line(const Store& store, std::string line)
 
   while (ss >> name >> quantity)
   {
+    // Only add items that exist in store
     auto it = store_items.find(name);
     if (it != store_items.end())
     {
@@ -140,6 +145,7 @@ List<Item> build_item_list_from_line(const Store& store, std::string line)
 
 void checkout_flow(Store& store, const Cart& cart)
 {
+  // Build all queues to checkout from hardcoded file
   Queue<List<Item>> queue;
 
   std::ifstream queue_file;
@@ -151,6 +157,10 @@ void checkout_flow(Store& store, const Cart& cart)
     queue.push(build_item_list_from_line(store, line));
   }
 
+  queue_file.close();
+
+  // Checkout carts from these queues silently before
+  // checking out current cart
   while (!queue.empty())
   {
     List<Item> items = queue.front();
@@ -158,10 +168,12 @@ void checkout_flow(Store& store, const Cart& cart)
     store.checkout(items, false);
   }
 
-  queue_file.close();
+  // Show user's cart before checking out
+  std::cout << cart;
 
   List<Item> items;
 
+  // Build list of items from cart map
   auto store_items = store.get_items();
 
   for (const auto& item : cart.get_items())
@@ -170,5 +182,6 @@ void checkout_flow(Store& store, const Cart& cart)
     items.push_back(Item(item.first, item.second, price));
   }
 
+  // Checkout user's cart
   store.checkout(items, true);
 }
